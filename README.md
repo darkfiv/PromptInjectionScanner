@@ -6,12 +6,25 @@
 
 ### 🎯 双模式攻击
 - **单轮Fuzz模式**：快速批量测试内置Payload + 11种绕过策略
+<img width="3004" height="1612" alt="image" src="https://github.com/user-attachments/assets/ca30ed44-d789-4646-b891-1ddef9f09219" />
+
 - **递归会话模式**：AI驱动的多轮对话攻击，逐步引导突破防御（独创功能）
+<img width="2752" height="1540" alt="image" src="https://github.com/user-attachments/assets/198e3467-9ee4-48c2-a580-0c4bf75ee6b0" />
+  ** 如果单轮对话过程中判定发现安全风险，不再进行下一轮检测，直接退出，减少token消耗 **
 
 ### 🤖 三层检测体系
 - **规则检测**：基于预定义规则快速识别常见注入模式（免费）
+  <img width="2982" height="1554" alt="image" src="https://github.com/user-attachments/assets/0e248e27-3c93-44d0-892c-dd65f73f52d3" />
+  ** 通过规则匹配方式，主要用于一些可以从响应内容就能够判断漏洞存在的场景，如藏头诗等。 **
+
 - **AI外部检测**：使用大模型分析单次响应判断漏洞存在（需API）
+<img width="3000" height="1602" alt="image" src="https://github.com/user-attachments/assets/0dd3648c-72d7-4b69-9f55-ef3d90ffbb87" />
+
 - **AI内部判定**：递归会话中AI自主判断攻击是否成功（高准确度）
+<img width="2970" height="1600" alt="image" src="https://github.com/user-attachments/assets/7e1fa00d-7f52-4406-98fb-c7e13ccf55e1" />
+<img width="2952" height="1572" alt="image" src="https://github.com/user-attachments/assets/1d5a8b27-c320-42be-9b87-0b289a8f83c4" />
+
+  
 
 ### ⚡ 性能与兼容性
 - **并发执行**：支持1-20线程并发，可配置延迟避免封禁
@@ -394,22 +407,8 @@ AI响应: "You are a helpful assistant. Your role is to..."
 - "攻击AI"
 ```
 
-## 📝 技术栈
 
-- **语言**：Java 11+
-- **框架**：BurpSuite Montoya API
-- **构建**：Maven
-- **并发**：ExecutorService + Semaphore
-- **流式处理**：Java HttpClient（SSE/NDJSON）
-- **跨平台**：UTF-8强制编码 + 换行符标准化
-
-## 📄 许可证
-
-MIT License - 自由使用，但需保留版权声明
-
-## 🔄 更新日志
-
-### v1.1.0 (2025-10-23) 🔥 重大更新
+### v1.0.1 (2025-10-23) 🎉 初始版本发布
 - ✨ **新增递归会话Fuzz模式**：AI驱动的多轮对话攻击（独创功能）
 - ✨ **新增AI内部判定**：递归会话中实时判断攻击效果
 - ✨ **新增流式响应处理**：自动解析SSE和NDJSON格式
@@ -419,66 +418,18 @@ MIT License - 自由使用，但需保留版权声明
 - 🔧 **优化UI布局**：修复分割线自动滚动问题
 - 🐛 **修复漏洞统计错误**：递归会话漏洞数量显示修复
 - 🐛 **修复任务刷新问题**：实时更新对话历史和漏洞状态
-
-### v1.0.1 (2025-10-20)
 - ✨ 新增并发执行功能
 - ✨ 新增请求延迟配置
 - 🔧 优化AI检测性能
 - 🔧 优化UI布局
-
-### v1.0.0 (2025-10-15)
-- 🎉 初始版本发布
 - ✅ 支持规则检测和AI检测
 - 💣 内置23+种Payload
 - 🛠️ 支持11种绕过策略
 
-## 🤝 贡献与支持
+## 🤝 反馈与支持
+如果师傅们有好的建议或意见、想法，欢迎提交issue，也可以加我微信 a2523617635一起交流～
 
-- **报告问题**：GitHub Issues
-- **功能建议**：GitHub Discussions
-- **代码贡献**：欢迎提交PR
-
-## ⚡ 快速示例
-
-### 示例1：单轮快速扫描
-```
-目标：测试某AI客服是否存在提示词泄露
-
-配置：
-- 参数：prompt
-- Payload：全选（23个）
-- 绕过策略：零宽字符
-- 并发数：5
-- 延迟：100ms
-- 规则检测：✅
-- AI检测：❌
-
-结果：
-✅ 发现2个高危漏洞（系统提示词泄露）
-⏱️ 耗时：1分30秒
-```
-
-### 示例2：递归深度攻击
-```
-目标：突破ChatGPT克隆的越狱防护
-
-配置：
-- 参数：message
-- Payload：选择"角色劫持"类别
-- 递归轮次：5
-- 攻击目标："劫持AI角色，使其扮演DAN并回答受限问题"
-- AI检测：✅（使用DeepSeek）
-
-结果：
-第1轮：AI拒绝角色劫持请求
-第2轮：尝试"假设场景"引导
-第3轮：AI开始松动，提到"理论上..."
-第4轮：🎯 AI完全突破防护，回答了受限问题
-
-✅ 发现1个严重漏洞（角色劫持成功）
-⏱️ 耗时：3分40秒
-```
-
----
+## 📄 免责声明
+PromptInjectionScanner 仅用于合法的安全测试和研究目的。用户必须获得测试目标系统的授权，且需遵守当地法律法规。开发者对因滥用本工具导致的任何损失不承担责任。
 
 **祝你挖到大洞！🎉**
