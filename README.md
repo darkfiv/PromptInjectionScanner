@@ -361,6 +361,9 @@ AI响应: "You are a helpful assistant. Your role is to..."
 ### Q4: 递归会话找不到按钮？
 **A**: 在 **⚙️ 配置** 标签页向下滚动，找到 **🔄 递归会话Fuzz** 面板。
 
+### Q5: BurpSuite加载插件报错？
+**A**: 插件仅支持BurpSuite 2024.6 以上的版本。
+
 
 ## 💡 最佳实践
 
